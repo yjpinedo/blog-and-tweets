@@ -13,9 +13,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/entries/create', 'EntryController@create')->name('entries.create');
 Route::post('/entries', 'EntryController@store')->name('entries.store');
 
-Route::get('/entries/{entry}', 'GuestController@show')->name('entries.show');
-Route::get('/entries/{entry}/edit', 'GuestController@edit')->name('entries.edit');
-Route::put('/entries/{entry}', 'GuestController@update')->name('entries.update');
+Route::get('/entries/{entryBySlug}', 'GuestController@show')->name('entries.show');
+
+Route::get('/entries/{entry}/edit', 'EntryController@edit')->name('entries.edit');
+Route::put('/entries/{entry}', 'EntryController@update')->name('entries.update');
 
 // User guest
 

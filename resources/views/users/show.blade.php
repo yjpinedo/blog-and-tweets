@@ -19,7 +19,7 @@
                         <ul class="list-group list-group-flush">
                             @foreach($entries as $entry)
                                 <li class="list-group-item m-2">
-                                    <a href="#" class="text-dark text-decoration-none">{{ $entry->title }}</a>
+                                    <a href="{{ $entry->getUrl() }}" class="text-dark text-decoration-none">{{ $entry->title }}</a>
                                 </li>
                             @endforeach
                         </ul>

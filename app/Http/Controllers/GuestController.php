@@ -15,27 +15,8 @@ class GuestController extends Controller
         return view('welcome', compact('entries'));
     }
 
-    public function show(Entry $entry)
+    public function show(Entry $entryBySlug)
     {
-        return view('entries.show', compact('entry'));
-    }
-
-    public function edit(Entry $entry)
-    {
-        return view('entries.edit', compact('entry'));
-    }
-
-    public function update(Request $request, Entry $entry)
-    {
-        $input = $request->validate([
-            'title' => 'required|min:7|max:255|unique:entries,id,'.$entry->id,
-            'content' => 'required|min:25|max:3000',
-        ]);
-
-        $entry->title = $input['title'];
-        $entry->content = $input['content'];
-        $entry->save();
-
-        return back()->with('status', 'Your entry has been update success');
+        return view('entries.show', ['entry' => $entryBySlug]);
     }
 }

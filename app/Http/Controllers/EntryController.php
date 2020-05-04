@@ -12,11 +12,6 @@ class EntryController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
-    {
-        //
-    }
-
     public function create()
     {
         return view('entries.create');
@@ -38,48 +33,22 @@ class EntryController extends Controller
         return back()->with('status', 'Your entry has been published success');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Entry  $entry
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Entry $entry)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Entry  $entry
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Entry $entry)
     {
-        //
+        return view('entries.edit', compact('entry'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Entry  $entry
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Entry $entry)
     {
-        //
-    }
+        $input = $request->validate([
+            'title' => 'required|min:7|max:255|unique:entries,id,'.$entry->id,
+            'content' => 'required|min:25|max:3000',
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Entry  $entry
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Entry $entry)
-    {
-        //
+        $entry->title = $input['title'];
+        $entry->content = $input['content'];
+        $entry->save();
+
+        return back()->with('status', 'Your entry has been update success');
     }
 }
