@@ -9,11 +9,11 @@
                     <div class="card-body">
                         <p>{{ $entry->content }}</p>
                     </div>
-                    @if($entry->user->id == auth()->id())
+                    @can('update', $entry)
                         <div class="card-footer bg-white">
                             <a href="{{ route('entries.edit', $entry->id) }}" class="btn btn-secondary btn-block">Edit entry</a>
                         </div>
-                    @endif
+                    @endcan
                 </div>
             </div>
         </div>
