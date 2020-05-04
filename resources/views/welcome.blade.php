@@ -11,7 +11,7 @@
                         <p>{{ $entry->content }}</p>
                     </div>
                     <div class="card-footer">
-                        Author: <a href="{{ route('users.show', $entry->user->id) }}"> {{ $entry->user->name }}</a>
+                        Author: <a href="{{ route('users.show', $entry->user->username) }}"> {{ $entry->user->name }}</a>
                     </div>
                 </div>
                 @endforeach

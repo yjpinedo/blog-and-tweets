@@ -20,4 +20,4 @@ Route::put('/entries/{entry}', 'EntryController@update')->name('entries.update')
 
 // User guest
 
-Route::get('/users/{user}', 'UserController@show')->name('users.show');
+Route::get('/@{user}', 'UserController@show')->name('users.show');

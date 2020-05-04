@@ -12,14 +12,18 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <h3>My entries</h3>
-                    <ul class="list-group list-group-flush">
-                        @foreach($entries as $entry)
-                            <li class="list-group-item m-2">
-                                <a href="{{ $entry->getUrl() }}" class="text-dark text-decoration-none">{{ $entry->title }}</a>
-                            </li>
-                        @endforeach
-                    </ul>
+                    @if($entries->isEmpty())
+                        <p>You din´t publish any entry yet.</p>
+                    @else
+                        <h5>My entries:</h5>
+                        <ul class="list-group list-group-flush">
+                            @foreach($entries as $entry)
+                                <li class="list-group-item m-2">
+                                    <a href="{{ $entry->getUrl() }}" class="text-dark text-decoration-none">{{ $entry->title }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
             </div>
         </div>
