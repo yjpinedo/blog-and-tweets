@@ -12,5 +12,22 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UserSeeder::class);
+
+        factory(\App\User::class)->create([
+            'name' => 'Yeimer',
+            'email' => 'yeimer@mail.com',
+            'password' => bcrypt('password'),
+        ]);
+
+        factory(\App\User::class, 10)->create();
+
+        $users = \App\User::all();
+
+        foreach ($users as $user) {
+            factory(\App\Entry::class, 10)->create([
+               'user_id' => $user->id,
+            ]);
+        }
+
     }
 }

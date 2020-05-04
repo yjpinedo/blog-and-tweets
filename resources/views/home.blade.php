@@ -6,15 +6,20 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    <h3>My entries</h3>
+                    <ul class="list-group list-group-flush">
+                        @foreach($entries as $entry)
+                            <li class="list-group-item m-2">
+                                <a href="{{ route('entries.show', $entry->id) }}" class="text-dark text-decoration-none">{{ $entry->title }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
